@@ -6,12 +6,12 @@ import 'dotenv/config';
 
 import itemsRouter from './routes/items.routes.js';
 
-// 🔥 IMPORTANTE: primero se crea app
+// ✅ APP SIEMPRE PRIMERO
 const app = express();
 
-/* =========================
-   CORS
-========================= */
+// =========================
+// CORS
+// =========================
 app.use(cors({
   origin: "https://mean-crud-o781-iwcol3kg7-alejandro-cardona283-s-projects.vercel.app",
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -20,30 +20,29 @@ app.use(cors({
 
 app.options("*", cors());
 
-/* =========================
-   MIDDLEWARES
-========================= */
+// =========================
+// MIDDLEWARES
+// =========================
 app.use(express.json());
 app.use(morgan('dev'));
 
-/* =========================
-   ROUTES
-========================= */
+// =========================
+// ROUTES
+// =========================
 app.use('/api/items', itemsRouter);
 
-/* =========================
-   SERVER
-========================= */
+// =========================
+// SERVER
+// =========================
 const PORT = process.env.PORT || 4000;
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('✅ MongoDB conectado');
-
     app.listen(PORT, () => {
-      console.log(`🚀 API corriendo en puerto ${PORT}`);
+      console.log(`🚀 API en puerto ${PORT}`);
     });
   })
   .catch(err => {
-    console.error('❌ Error MongoDB:', err.message);
+    console.error('❌ Mongo error:', err.message);
   });
