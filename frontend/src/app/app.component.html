@@ -1,0 +1,155 @@
+<div *ngIf="!logueado" class="login-container">
+
+  <div class="login-card">
+
+    <h1>Energy App</h1>
+    <p>⚡ Analizador de consumo eléctrico</p>
+
+    <input [(ngModel)]="correo" placeholder="Correo">
+    <input type="password" [(ngModel)]="password" placeholder="Contraseña">
+
+    <button class="btn-login" (click)="login()">
+      Iniciar sesión
+    </button>
+
+    <button class="btn-registrar" (click)="registrar()">
+      Crear cuenta
+    </button>
+
+    <div class="divider">o</div>
+
+    <button class="btn-google" (click)="loginGoogle()">
+      Continuar con Google
+    </button>
+
+  </div>
+
+</div>
+
+
+<div *ngIf="logueado" class="app-container">
+
+  <!-- BOTÓN CERRAR SESIÓN -->
+  <div style="display:flex; justify-content:flex-end; margin-bottom:10px;">
+    <button (click)="cerrarSesion()" class="btn-logout">
+      Cerrar sesión
+    </button>
+  </div>
+
+  <!-- REPORTE -->
+  <div class="reporte">
+    <h2>Reporte del Usuario</h2>
+    <p><b>Correo:</b> {{usuarioActual?.email}}</p>
+    <p><b>Total registros:</b> {{historial.length}}</p>
+    <p><b>Última fecha:</b> {{ultimaFecha | date:'short'}}</p>
+  </div>
+
+  <h1>Calculadora de Consumo</h1>
+
+  <div class="formulario">
+
+    <input type="text"
+      placeholder="Nombre de usuario"
+      [(ngModel)]="nombre">
+
+    <input type="number"
+      placeholder="Consumo diario (kWh)"
+      [(ngModel)]="consumoDiario">
+
+    <input type="number"
+      placeholder="Días facturados"
+      [(ngModel)]="dias">
+
+    <input type="number"
+      step="0.01"
+      placeholder="Tarifa €/kWh"
+      [(ngModel)]="tarifa">
+
+    <button class="calcular" (click)="calcular()">Calcular</button>
+
+    <button class="guardar" (click)="guardar()">Guardar registro</button>
+
+  </div>
+
+  <div class="resultado" *ngIf="consumoMensual">
+
+    <p><b>Consumo mensual:</b> {{consumoMensual}} kWh</p>
+    <p><b>Costo mensual:</b> € {{costoMensual}}</p>
+
+    <p [ngClass]="{
+      'bajo': clasificacion=='Bajo',
+      'medio': clasificacion=='Medio',
+      'alto': clasificacion=='Alto'
+    }">
+      Clasificación: {{clasificacion}}
+    </p>
+
+  </div>
+
+  <h2>Historial</h2>
+
+  <table>
+
+    <tr>
+      <th>Nombre</th>
+      <th>Consumo</th>
+      <th>Días</th>
+      <th>Tarifa</th>
+      <th>Consumo Mensual</th>
+      <th>Costo</th>
+      <th>Clasificación</th>
+      <th>Acciones</th>
+    </tr>
+
+    <tr *ngFor="let r of historial">
+
+      <td>{{r.nombre}}</td>
+      <td>{{r.consumoDiario}}</td>
+      <td>{{r.dias}}</td>
+      <td>{{r.tarifa}}</td>
+      <td>{{r.consumoMensual}}</td>
+      <td>{{r.costoMensual}}</td>
+
+      <td [ngClass]="{
+        'bajo': r.clasificacion === 'Bajo',
+        'medio': r.clasificacion === 'Medio',
+        'alto': r.clasificacion === 'Alto'
+      }">
+        {{r.clasificacion}}
+      </td>
+
+      <td>
+        <button class="editar" (click)="editar(r)">Editar</button>
+        <button class="borrar" (click)="borrar(r._id)">Borrar</button>
+      </td>
+
+    </tr>
+
+  </table>
+
+  <!-- GRÁFICAS -->
+  <div class="graficas-container">
+
+    <div class="grafica">
+      <h2>Distribución del consumo</h2>
+      <canvas
+        baseChart
+        [datasets]="pieChartData"
+        [labels]="pieChartLabels"
+        [type]="pieChartType">
+      </canvas>
+    </div>
+
+    <div class="grafica">
+      <h2>Costos por registro</h2>
+      <canvas
+        baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [type]="barChartType">
+      </canvas>
+    </div>
+
+  </div>
+
+</div>

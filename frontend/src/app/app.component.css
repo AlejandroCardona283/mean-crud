@@ -1,0 +1,137 @@
+body{
+font-family:Arial;
+margin:0;
+background:#f4f6f8;
+}
+
+.login-container{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:linear-gradient(135deg,#4facfe,#00f2fe);
+}
+
+.login-card{
+background:white;
+padding:40px;
+border-radius:12px;
+width:350px;
+text-align:center;
+}
+
+.login-card input{
+width:100%;
+padding:12px;
+margin-bottom:15px;
+}
+
+.btn-login{
+width:100%;
+padding:12px;
+background:#007bff;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+.btn-registrar{
+width:100%;
+padding:12px;
+background:#ff9800;
+color:white;
+border:none;
+border-radius:6px;
+margin-top:10px;
+cursor:pointer;
+}
+
+.divider{
+margin:20px 0;
+}
+
+.app-container{
+max-width:1000px;
+margin:auto;
+padding:30px;
+text-align:center;
+}
+
+.formulario{
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.formulario input{
+padding:10px;
+}
+
+.calcular{
+background:#2196f3;
+color:white;
+border:none;
+padding:10px;
+}
+
+.guardar{
+background:#28a745;
+color:white;
+border:none;
+padding:10px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th{
+background:#343a40;
+color:white;
+padding:10px;
+}
+
+td{
+border:1px solid #ddd;
+padding:10px;
+}
+
+.bajo{
+background:#ff4d4d;
+color:white;
+}
+
+.medio{
+background:#ffd633;
+}
+
+.alto{
+background:#28a745;
+color:white;
+}
+
+.graficas-container{
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:20px;
+}
+
+.grafica{
+  width:45%;
+  text-align:center;
+}
+
+.btn-logout{
+  background:#dc3545;
+  color:white;
+  border:none;
+  padding:8px 15px;
+  border-radius:6px;
+  cursor:pointer;
+}
