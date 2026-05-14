@@ -8,7 +8,12 @@ import 'dotenv/config';
 
 import itemsRouter from './routes/items.routes.js';
 
-const app = express();
+app.use(cors({
+  origin: [
+    'http://localhost:4200',
+    'https://mean-crud-o781.vercel.app'
+  ]
+}));
 
 // Middlewares
 app.use(cors());
