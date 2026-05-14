@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { environment } from '../environments/environment';
 import {
   Auth,
   authState,
@@ -44,7 +45,7 @@ export class AppComponent {
   editandoId: any = null;
 
   // 🔥 CAMBIO AQUÍ (API NODE)
-  apiUrl = 'http://localhost:4000/api/items';
+  apiUrl = `${environment.apiUrl}/api/items`;
 
   historial: any[] = [];
   ultimaFecha = "";
