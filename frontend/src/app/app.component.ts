@@ -45,7 +45,7 @@ export class AppComponent {
   editandoId: any = null;
 
   // 🔥 CAMBIO AQUÍ (API NODE)
-  apiUrl = `${environment.apiUrl}/api/items`;
+  apiUrl = 'https://mean-crud-production.up.railway.app/api/items';
 
   historial: any[] = [];
   ultimaFecha = "";
