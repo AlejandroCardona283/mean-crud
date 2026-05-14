@@ -6,34 +6,23 @@ import 'dotenv/config';
 
 import itemsRouter from './routes/items.routes.js';
 
-// ✅ APP SIEMPRE PRIMERO
 const app = express();
 
-// =========================
 // CORS
-// =========================
 app.use(cors({
   origin: "https://mean-crud-o781-iwcol3kg7-alejandro-cardona283-s-projects.vercel.app",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
-app.options("/*", cors());
-
-// =========================
-// MIDDLEWARES
-// =========================
+// Middlewares
 app.use(express.json());
 app.use(morgan('dev'));
 
-// =========================
-// ROUTES
-// =========================
+// Routes
 app.use('/api/items', itemsRouter);
 
-// =========================
-// SERVER
-// =========================
+// Server
 const PORT = process.env.PORT || 4000;
 
 mongoose.connect(process.env.MONGO_URI)
