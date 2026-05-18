@@ -10,7 +10,7 @@ const app = express();
 
 // CORS
 app.use(cors({
-  origin: "https://mean-crud-o781-iwcol3kg7-alejandro-cardona283-s-projects.vercel.app",
+  origin: "*",
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
